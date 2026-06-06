@@ -17,7 +17,7 @@ tasks = [
 # 2. User Accounts and Scores Database
 # Format: {"username": {"password": "123", "group": "EcoSeniors", "points": 0}}
 users_db = {
-    "admin": {"password": "password123", "group": "All", "points": 100}  # Pre-made account for testing
+    "admin": {"password": "password123", "group": "All", "points": 10000}  # Pre-made account for testing
 }
 
 # Track overall community progress
