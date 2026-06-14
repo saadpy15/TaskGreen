@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskGreen | Settings</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0fdf4; margin: 0; display: flex; }
+        .sidebar { background-color: #16a34a; width: 240px; height: 100vh; color: white; padding: 25px; box-sizing: border-box; position: fixed; }
+        .main { margin-left: 240px; flex: 1; padding: 40px; box-sizing: border-box; min-height: 100vh; }
+        h1, h2 { color: #1e293b; }
+        .sidebar h2 { color: white; margin-top: 0; }
+        .card { background: white; max-width: 500px; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); margin-top: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #475569; }
+        select, button { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 15px; margin-bottom: 20px; box-sizing: border-box; }
+        button { background-color: #16a34a; color: white; border: none; font-weight: bold; cursor: pointer; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #16a34a; text-decoration: none; font-weight: bold; }
+        .logout { color: #fca5a5; text-decoration: none; display: block; margin-top: 40px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>🌿 TaskGreen</h2>
+        <p style="opacity: 0.9;">Settings Panel</p>
+        <h3 style="color: #fef08a; margin-top: 30px;">Points: {{ points }}</h3>
+        <a href="/dashboard" class="logout" style="color: white; margin-top: 20px;">◀ Dashboard</a>
+    </div>
+
+    <div class="main">
+        <a href="/dashboard" class="back-link">◀ Return to Main Dashboard</a>
+        <h1>⚙️ Account Profile Settings</h1>
+        <p style="color: #64748b;">Manage your user preferences and circle group alignments below.</p>
+
+        <div class="card">
+            <h2 style="margin-top:0;">User Info</h2>
+            <p style="font-size: 15px; color: #334155;"><strong>Username account handle:</strong> {{ username }}</p>
+
+            <form method="POST">
+                <label for="group">Switch Community Circle Circle:</label>
+                <select name="group" id="group">
+                    <option value="Independent" {% if current_group == 'Independent' %}selected{% endif %}>Independent</option>
+                    <option value="EcoSeniors" {% if current_group == 'EcoSeniors' %}selected{% endif %}>EcoSeniors</option>
+                    <option value="GreenStreet Team" {% if current_group == 'GreenStreet Team' %}selected{% endif %}>GreenStreet Team</option>
+                </select>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

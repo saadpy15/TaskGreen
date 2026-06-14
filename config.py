@@ -2,9 +2,8 @@
 DB_CONFIG = {
     "host": "localhost",
     "user": "taskgreen_user",
-    "password": "TaskGreenPass123!",  # Ensure this matches your MySQL setup
-    "database": "task_green_db",
-    "auth_plugin": "caching_sha256_password"
+    "password": "task_green1",
+    "database": "task_green_db"
 }
 
 # --- SMTP LIVE EMAIL CONFIGURATION ---

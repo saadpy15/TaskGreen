@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to TaskGreen</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0fdf4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; width: 450px; height: 280px; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
+        h2 { color: #16a34a; margin-top: 0; }
+        p { color: #475569; line-height: 1.6; }
+        .buttons { display: flex; justify-content: space-between; }
+        button { padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .next-btn { background-color: #16a34a; color: white; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div id="slide-content">
+            <h2 id="title">Welcome to TaskGreen! 🌱</h2>
+            <p id="desc">Thank you for joining our community! TaskGreen helps organize, track, and complete environmental goals to benefit your local neighborhood.</p>
+        </div>
+        <div class="buttons">
+            <button id="back" onclick="prevSlide()" style="visibility: hidden;">Back</button>
+            <form id="finish-form" method="POST" style="margin: 0; margin-left: auto;">
+                <button type="button" id="next" class="next-btn" onclick="nextSlide()">Next ▶</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const slides = [
+            { title: "Welcome to TaskGreen! 🌱", desc: "Thank you for joining our community! TaskGreen helps organize, track, and complete environmental goals to benefit your local neighborhood." },
+            { title: "📋 Daily Dashboards", desc: "Every day you are served active tasks targeted to your social group network circle. Claim one to begin working!" },
+            { title: "👑 Levelling Up", desc: "Earn environmental milestone points by confirming tasks. Work your path from a tiny Seedling all the way up to a global Nature Champion!" }
+        ];
+        let current = 0;
+
+        // Custom function to handle slide steps smoothly
+        function updateSlide() {
+            document.getElementById("title").innerText = slides[current].title;
+            document.getElementById("desc").innerText = slides[current].desc;
+            document.getElementById("back").style.visibility = current === 0 ? "hidden" : "visible";
+            
+            if (current === slides.length - 1) {
+                document.getElementById("next").innerText = "Let's Go!";
+                document.getElementById("next").type = "submit"; 
+            } else {
+                document.getElementById("next").innerText = "Next ▶";
+                document.getElementById("next").type = "button";
+            }
+        }
+
+        function nextSlide() {
+            if (current < slides.length - 1) { current++; updateSlide(); }
+        }
+        function prevSlide() {
+            if (current > 0) { current--; updateSlide(); }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskGreen - System Portal Authentication</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f2fbf5; margin: 0; padding: 0;
+            display: flex; justify-content: center; align-items: center; height: 100vh;
+        }
+        .login-card {
+            background-color: #ffffff; border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px; width: 100%; max-width: 400px;
+            box-sizing: border-box; text-align: center;
+        }
+        .logo-box { margin-bottom: 25px; }
+        .logo-box img { max-width: 180px; height: auto; }
+        h2 { font-size: 24px; color: #2c3e50; margin-bottom: 25px; font-weight: 600; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; font-size: 14px; color: #7f8c8d; margin-bottom: 8px; font-weight: 500; }
+        .input-field { width: 100%; padding: 12px; border: 1px solid #bdc3c7; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 15px; box-sizing: border-box; color: #2c3e50; }
+        .input-field:focus { outline: none; border-color: #27ae60; }
+        .btn-submit { width: 100%; background-color: #2ecc71; color: white; border: none; padding: 14px; font-size: 16px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: background-color 0.2s; margin-top: 10px; }
+        .btn-submit:hover { background-color: #27ae60; }
+        .footer-links { margin-top: 25px; font-size: 14px; color: #34495e; }
+        .footer-links a { color: #27ae60; text-decoration: none; font-weight: 600; }
+        .footer-links a:hover { text-decoration: underline; }
+        .flash-msg { padding: 12px; border-radius: 6px; margin-bottom: 20px; font-size: 14px; font-weight: 500; text-align: left; }
+        .flash-error { background-color: #fde8e8; color: #c0392b; border: 1px solid #f8b4b4; }
+        .flash-success { background-color: #eafaf1; color: #27ae60; border: 1px solid #c3f3d7; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo-box">
+            <img src="{{ url_for('static', filename=logo_img) }}" alt="TaskGreen Logo">
+        </div>
+        <h2>Welcome to TaskGreen</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, msg in messages %}
+                    <div class="flash-msg flash-{{ category }}">{{ msg }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('login') }}" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="input-field" placeholder="Enter your username" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="input-field" placeholder="Enter your system password" required>
+            </div>
+            <button type="submit" class="btn-submit">Sign In</button>
+        </form>
+        <div class="footer-links">
+            Don't have an account? <a href="{{ url_for('register') }}">Sign Up Here</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskGreen | Master Admin Roster</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f1f5f9; margin: 0; padding: 40px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #0f172a; margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .subtitle { color: #64748b; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; text-align: left; }
+        th, td { padding: 14px 20px; border-bottom: 1px solid #e2e8f0; }
+        th { background-color: #f8fafc; color: #475569; font-weight: bold; text-transform: uppercase; font-size: 12px; }
+        tr:hover { background-color: #f8fafc; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; background-color: #e2e8f0; color: #334155; }
+        .badge.done { background-color: #dcfce7; color: #15803d; }
+        .points { font-weight: bold; color: #16a34a; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #16a34a; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/dashboard" class="back-link">◀ Back to Volunteer Dashboard</a>
+        <h1>👥 Master Volunteer Registry</h1>
+        <p class="subtitle">Live look at every user account created inside the local TaskGreen engine database matrix.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Community Circle / Group</th>
+                    <th>Total Points Balance</th>
+                    <th>Completed Walkthrough?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>#{{ user.id }}</td>
+                    <td><strong>{{ user.username }}</strong></td>
+                    <td>{{ user.user_group }}</td>
+                    <td class="points">{{ user.points }} pts</td>
+                    <td>
+                        {% if user.has_onboarded == 1 %}
+                            <span class="badge done">Yes</span>
+                        {% else %}
+                            <span class="badge">No</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
